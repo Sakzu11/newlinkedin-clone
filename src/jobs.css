@@ -1,0 +1,147 @@
+/* Page Layout */
+
+.sidebar {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
+  width: 80%;
+  margin: 30px auto;
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin-top: 40px;
+  
+}
+
+
+/* LEFT PROFILE SIDEBAR */
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.image{
+  width: 20px;
+
+}
+
+
+
+/* Profile Card */
+
+.sidebar__left {
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+  padding-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.sidebar__left img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.job__sidebar .avatar {
+      
+       
+       
+       margin-bottom: -10px;
+        width:80px;
+        height:80px ;
+        border-radius:50%;
+        margin-right: -70px;
+        /* border:3px solid #fff;
+        box-shadow:2px 2px rgba(0,0,0,0.15);
+        background-color:transparent; */
+}
+.job__sidebar img{
+  height:80px;
+  width:80px;
+  border-radius:50%;
+  
+}
+
+.sidebar__left h2 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.sidebar__left h3 {
+  font-size: 14px;
+  color: gray;
+}
+
+.sidebar__left p {
+  font-size: 13px;
+  color: #555;
+  padding: 0 10px;
+}
+
+
+/* MENU SECTION */
+
+.sidebar__middle {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.sidebar__middle a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.sidebar__middle h4 {
+  font-size: 15px;
+}
+
+
+
+.sidebar__middle h3 {
+  margin-top: 15px;
+  color: #0a66c2;
+  cursor: pointer;
+}
+
+
+/* RIGHT JOB SECTION */
+
+.sidebar__Right {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.sidebar__Right h2 {
+  margin-bottom: 15px;
+}
+
+
+/* JOB CONTAINER */
+
+.sidebar__container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-right: 100px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+
+}

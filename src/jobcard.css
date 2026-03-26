@@ -1,0 +1,83 @@
+/* JOB LIST CARD */
+
+.jobListCard{
+  display:flex;
+  align-items:flex-start;
+  gap:15px;
+  padding:16px 10px;
+  border-bottom:1px solid #e6e6e6;
+  background:white;
+  transition:0.2s;
+}
+
+.jobListCard:hover{
+  background:#f3f6f8;
+}
+
+/* LOGO */
+
+.jobListCard__logo img{
+  width:48px;
+  height:48px;
+  border-radius:6px;
+  object-fit:contain;
+}
+
+/* INFO SECTION */
+
+.jobListCard__info{
+  flex:1;
+}
+
+.jobListCard__title{
+  font-size:16px;
+  font-weight:600;
+  color:#0a66c2;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.verifiedIcon{
+  font-size:18px;
+  color:#666;
+}
+
+/* COMPANY */
+
+.jobListCard__company{
+  font-size:14px;
+  color:#444;
+  margin-top:2px;
+}
+
+/* CONNECTION TEXT */
+
+.jobListCard__connections{
+  font-size:13px;
+  color:#666;
+  margin-top:5px;
+}
+
+/* META INFO */
+
+.jobListCard__meta{
+  font-size:13px;
+  color:#0a7d2c;
+  margin-top:4px;
+}
+
+/* ACTION ICON */
+
+.jobListCard__actions{
+  cursor:pointer;
+}
+
+.closeIcon{
+  color:#777;
+  margin-left: 500px;
+}
+
+.closeIcon:hover{
+  color:#000;
+}

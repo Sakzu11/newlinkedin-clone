@@ -1,0 +1,140 @@
+body{
+background:#f3f2ef;
+font-family:Arial;
+}
+
+.container{
+display:flex;
+width:1200px;
+margin:auto;
+margin-top:20px;
+gap:20px;
+ direction:ltr; 
+}
+
+/* LEFT */
+
+.left{
+flex:0.25;
+}
+.profilebanner{
+width:120%;
+margin-left:-27px;
+border-top-left-radius:10px;
+}
+.tabs{
+  background-color: #e8f3ff;
+}
+.premiumImg{
+width:80px;
+border-radius:50%;
+}
+
+
+.profileCard{
+background:white;
+padding:20px;
+border-radius:10px;
+text-align:left;
+margin-bottom:10px;
+
+}
+.left h2{
+  font-size: 20px;
+}
+.left p{
+color:rgba(73, 70, 70, 0.611);
+margin-right:20px;
+}
+
+.profileImg{
+width:80px;
+border-radius:50%;
+margin-right: 120px;
+margin-top:-35px;
+
+
+}
+
+.manageCard{
+background:white;
+padding:15px;
+border-radius:10px;
+}
+
+
+/* MIDDLE */
+
+.middle{
+flex:0.5;
+}
+
+.tabs{
+display:flex;
+gap:10px;
+margin-bottom:15px;
+background-color: #e8f3ff;
+}
+
+.tabs button{
+padding:8px 16px;
+border-radius:20px;
+border:1px solid gray;
+background:rgb(255, 255, 255);
+cursor:pointer;
+}
+
+.tabs .active{
+background-color:#f8f8f9;
+color:rgb(19, 19, 19);
+}
+
+.notificationCard{
+display:flex;
+align-items:center;
+background:#ffffff;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.notificationCard img{
+width:40px;
+margin-right:10px;
+}
+
+.content button{
+margin-top:5px;
+padding:6px 14px;
+border:none;
+border-radius:20px;
+background:#0a66c2;
+color:white;
+}
+
+.time{
+margin-left:auto;
+color:gray;
+}
+
+/* RIGHT */
+
+.right{
+flex:0.25;
+}
+
+.premiumCard{
+background:white;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
+
+.premiumCard button{
+margin-top:10px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#4c75cd;
+color:white;
+}

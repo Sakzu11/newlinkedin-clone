@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "meta[name=theme-color]"
+        ]
+      }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "background-color: lab(93.07% -0.2 2.65)",
+          "position: sticky",
+          "min-width: fit-content"
+        ]
+      }
+    ]
+  }
+}

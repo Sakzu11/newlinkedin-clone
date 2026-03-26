@@ -1,0 +1,33 @@
+.inputOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(0, 0, 0, 0.7);
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  font-size: 13px;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+.inputOption:hover {
+  background-color: #e8e7e1;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.inputOption svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.inputOption h4 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+

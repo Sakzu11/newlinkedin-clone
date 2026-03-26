@@ -1,0 +1,153 @@
+.newsletterModal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+}
+
+.newsletterBox{
+width:750px;
+background:white;
+border-radius:8px;
+padding:25px;
+}
+
+.newsletterHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.closeBtn{
+cursor:pointer;
+font-size:20px;
+}
+
+.topText{
+color:#555;
+font-size:14px;
+margin-bottom:15px;
+}
+
+.row{
+display:flex;
+gap:20px;
+}
+
+.inputGroup{
+flex:1;
+display:flex;
+flex-direction:column;
+margin-bottom:15px;
+}
+
+.inputGroup label{
+font-size:13px;
+margin-bottom:5px;
+}
+
+.inputGroup input,
+.inputGroup select{
+padding:10px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+
+.full{
+width:100%;
+}
+
+.full small{
+color:#666;
+font-size:12px;
+margin-top:5px;
+}
+
+.uploadSection{
+display:flex;
+gap:20px;
+margin-top:10px;
+align-items:center;
+margin-right: 20px;
+}
+
+.logo-wrapper p:first-child{
+  font-weight: 600;
+  color: #333;
+  padding-left: 100px;
+  padding-top: 50px;
+}
+.logo-box{
+width:100px;
+height:100px;
+margin-bottom:1px;
+margin-top:-25px;
+
+}
+
+.logo-wrapper small{
+  font-size: 13px;
+  color: rgb(114, 106, 106);
+  margin-left:130px;
+  margin-top:100px;
+}
+
+
+/* .imagePreview{
+width:80px;
+height:80px;
+background:#b33939;
+border-radius:4px;
+margin-right: 50px;
+} */
+
+.uploadBtn{
+margin-top:8px;
+padding:8px 14px;
+border-radius:20px;
+border:1px solid #0a66c2;
+color:#0a66c2;
+background:white;
+cursor:pointer;
+}
+
+
+.bottomInfo{
+background:#f3f2ef;
+padding:12px;
+border-radius:4px;
+margin-top:20px;
+font-size:13px;
+}
+
+.footerButtons{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:15px;
+}
+
+.cancelBtn{
+padding:8px 16px;
+border-radius:20px;
+border:1px solid #0a66c2;
+background:white;
+color:#0a66c2;
+cursor:pointer;
+}
+
+.doneBtn{
+padding:8px 18px;
+border-radius:20px;
+background:#0a66c2;
+color:white;
+border:none;
+cursor:pointer;
+}

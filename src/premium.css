@@ -1,0 +1,115 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+ }
+
+.modalBox {
+  background: white;
+  width: 500px;
+  border-radius: 10px;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Header */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalHeader h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.closeIcon {
+  cursor: pointer;
+  color: gray;
+}
+
+/* Content */
+.modalContent ul {
+  margin-top: 15px;
+  list-style: none;
+  padding: 0;
+}
+
+.modalContent ul li {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+/* Users */
+.users {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.users img {
+  border-radius: 50%;
+  margin-right: -8px;
+  border: 2px solid white;
+}
+
+.users span {
+  margin-left: 10px;
+  font-size: 13px;
+  color: gray;
+}
+
+/* Button */
+.premiumBtn {
+  width: 100%;
+  background: #f3b44c;
+  color: black;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.premiumBtn:hover {
+  background: #e0a53f;
+}
+
+/* Note */
+.note {
+  font-size: 12px;
+  color: gray;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  display:flex;
+  background-color: rgb(255, 255, 255);
+  align-items: center;
+  flex-direction:column;
 }
 
 .App-logo {
@@ -12,6 +16,12 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+@media (max-width: 900px) {
+  .profile-container {
+    flex-direction: column;
+  }
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -36,3 +46,17 @@
     transform: rotate(360deg);
   }
 }
+.app__body{
+  display:flex;
+  margin-top: 15px;
+  flex-direction: row;
+  justify-content: space-between;
+  margin:20px;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+.Widgets {
+  flex: 0.35;
+  margin-left: 40px;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 10px;
+  height: fit-content;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.Widgets__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+}
+@media (max-width: 900px) {
+  .profile-container {
+    flex-direction: column;
+  }
+}
+
+.Widgets__article {
+  display: flex;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.Widgets__article:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.Widgets__articleLeft {
+  margin-right: 10px;
+  color: #0177b7;
+}
+
+.Widgets__articleRight > h4 {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.Widgets__articleRight > p {
+  color: gray;
+  font-size: 12px;
+}

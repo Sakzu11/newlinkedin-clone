@@ -1,0 +1,220 @@
+
+    .sidebar{
+      
+        position:sticky;
+        display:flex;
+        flex:0.2;
+        text-align: center;
+        height:fit-content;
+        padding: 60px;
+        min-width:20px;
+        padding-top:2px;
+        padding-bottom:30px;
+        border-radius: 10px;
+        margin-left:100px;
+       
+       
+}
+
+    
+    .sidebar__top{
+        display:flex;
+        flex-direction:column;
+        align-items:left;
+        border:1px solid lightgray;
+        border-radius:10px;
+        background-color:white;
+        padding-bottom:50px;
+        
+     }
+     p{
+        margin-left:30px;
+        font-size: 13px;
+  
+ 
+    }
+    .sidebar__avatar{
+        /* center and overlap the banner */
+        position:center;
+        right:-10px;
+        align-items: 'center';
+        margin-left:-40px;
+        transform:translateX(-70%);
+      
+        width:80px !important;
+        height:80px !important;
+        border-radius:50%;
+        border:3px solid #fff;
+        box-shadow:2px 2px rgba(0,0,0,0.15);
+        background-color:transparent;
+        /* display:block; */
+       
+    }
+    
+
+
+    .sidebar__top > img{
+        margin-bottom:-20px;
+        height:100%;
+        width:100%;
+        object-fit:cover;
+        border-top-left-radius:10px;
+        border-top-right-radius:10px;
+    }
+    .sidebar__top>h3{
+        color: gray;
+        font-size: 12px;
+        
+        
+
+    }
+    
+
+    /* Ensure profile image in sidebar avatar is sized and cropped correctly */
+    .sidebar__avatar img,
+    .sidebar__avatar .profilpicImg{
+        width:100% !important;
+        height:100% !important;
+        border-radius:80%;
+        object-fit:cover;
+        display:block;
+       
+    }
+    h2{
+        text-align: center;
+        font-weight: 600; 
+    font-size: 25px;  }
+    h3{
+        text-align: center;
+        margin-right: 30px;
+        color: gray;
+        text-align: center;
+    }
+    .sidebar__stat{
+        margin-top:10px;
+       display: flex;
+      margin-right: 10px;
+       justify-content: space-between;
+       align-items: center;
+       margin-right: 30px;
+     
+        
+    }
+    .sidebar__statNumber{
+        
+        color:#0a66c2 !important;
+       
+    }
+    .sidebar__statNumber1{
+        font-weight:bold;
+        color:#196ec4 !important;
+       
+    }
+    
+    .sidebar__stat>p{
+        font-size:13px;
+        color:rgb(16, 15, 15);
+        margin-left:50px;
+        font-weight: 900;
+
+    }
+    .sidebar__stats{
+       
+        margin-top: 7px;
+        padding-bottom:-10px;
+        
+       
+      
+        border-top:1px solid lightgray;
+        border-bottom:1px solid lightgray;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        background-color: white;
+        border-radius: 10px;
+    }
+    .sidebar__stats p{
+        padding-top:10px;
+         margin-bottom:-10px;
+   } 
+   .sidebar__stats h5{
+        text-decoration: none;
+        color:rgb(6, 5, 5);
+        margin-top:-10px;
+        font-weight: 400;
+        margin-left:27px;
+        font-size: 12px;
+    }
+   
+    .sidebar__stats h3{
+        font-size:15px;
+        font-weight: 400;
+        margin-left:30px;
+       margin-top: -40px;
+    }
+    
+    .sidebar__bottom{
+        text-align: left;
+        padding:2px;
+        background-color: white;
+        border:1px solid lightgray;
+        border-radius: 10px;
+        margin-top:10px;
+        
+
+    }
+    .sidebar__bottom>p{
+        font-size:13px;
+        margin-left:20px;
+        margin-bottom:20px;
+        font-weight:400;
+    }
+    .sidebar__bottom h3{
+        margin-left:10px;
+        margin-top: -20px;
+    }
+    
+    .sidebar__bottom a{
+        text-decoration: none;
+        font-size:10px;
+        color:#cd8e2f;
+        margin-left:10px;
+        font-weight: 400;
+       
+        margin-top:20px;
+    }
+    .sidebar__bottom Img{
+        width:15px;
+        height:15px;
+        margin-left: 10px;
+      
+    }
+    .sidebar__end{
+        text-align: left;
+        padding:2px;
+        background-color:white;
+        border:1px solid lightgray;
+        border-radius: 10px;
+        margin-top:10px;
+        margin-bottom:20px;
+        margin-right: -1px;
+    }
+    .sidebar__end h4{
+        font-size:13px;
+        
+        margin-left:40px;
+        margin-top:-50px;
+       font-weight:400;
+        padding-top:20px;
+    }
+    .sidebar__end svg{
+        margin-left:10px;
+        color: rgb(53, 50, 50);
+        height: 40px;
+       
+    }
+    @media (max-width: 900px) {
+  .profile-container {
+    flex-direction: column;
+  }
+}
+   

@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.profile-container {
+ display:flex;
+  gap: 20px;
+ 
+  padding: 20px;
+  background: #f3f2ef;
+}
+
+/* LEFT */
+.profile-main {
+  flex:1;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* Cover */
+.cover img {
+  width: 1000px;
+  height: 180px;
+}
+
+/* Avatar */
+.avatar {
+  position: absolute;
+  top: 120px;
+  left: 20px;
+}
+
+.avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+}
+
+/* Info */
+.profile-info {
+  padding: 40px 20px 20px;
+}
+
+.profile-info h2 {
+  font-size: 24px;
+}
+
+.headline {
+  color: #555;
+  margin-top: 5px;
+}
+
+.location {
+  color: gray;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Buttons */
+.actions {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid #0a66c2;
+  background: white;
+  cursor: pointer;
+}
+
+button.primary {
+  background: #0a66c2;
+  color: white;
+  border: none;
+}
+
+button.outline {
+  border: 1px solid gray;
+}
+
+/* Cards */
+.info-card {
+  background: white;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+/* RIGHT */
+.profile-sidebar {
+  flex: 1;
+}
+
+.sidebar-card {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.full {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 900px) {
+  .profile-container {
+    flex-direction: column;
+  }
+
+  .avatar {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .profile-info {
+    text-align: center;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}

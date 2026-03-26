@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background:#fefbed;
+}
+.text{
+    color:#1d77d0;
+    margin-left:10px;
+    margin-top: -50px;
+    margin-bottom: -38px;
+  }
+.logo{
+    margin-bottom: -65px;
+    margin-right: 50px;
+}
+
+.login__container {
+  background:white;
+  padding:  70px;
+  width: 600px;
+
+  
+  text-align: center;
+}
+
+.login__logo {
+  width: 35px;
+  margin-bottom: 80px;
+  margin-right: -150px;
+ 
+}
+
+.login__container p1{
+  font-size: 20px;
+  margin-bottom: 10px;
+  color:brown;
+  font-weight: 200px;
+}
+
+
+.login__subtitle {
+  color: gray;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 1px #0a66c2;
+}
+
+.login__button {
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  background-color: #3055db;
+  color: white;
+  font-weight: bold;
+  cursor:pointer;
+  transition: 0.3s;
+}
+
+.login__button.active {
+  background-color: #0a66c2;
+  cursor: pointer;
+}
+
+.login__button.active:hover {
+  background-color: #004182;
+}
+
+.login__forgot {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #0a66c2;
+  cursor: pointer;
+}
+
+.login__forgot:hover {
+  text-decoration: underline;
+}
+
+.login__divider {
+  margin: 20px 0;
+  position: relative;
+}
+
+.login__divider span {
+  background: white;
+  padding: 0 10px;
+  color: gray;
+  font-size: 12px;
+}
+
+.login__divider::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  top: 50%;
+  left: 0;
+  z-index: -1;
+}
+
+.login__google {
+  padding: 10px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login__google:hover {
+  background: #f1f1f1;
+}
+
+.login__register {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login__register span {
+  color: #0a66c2;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login__register span:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .login__container {
+    width: 200%;
+    padding: 100px;
+  }
+}
