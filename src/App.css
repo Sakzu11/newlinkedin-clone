@@ -1,62 +1,27 @@
-.App {
-  text-align: center;
-  display:flex;
-  background-color: rgb(255, 255, 255);
-  align-items: center;
-  flex-direction:column;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #f3f2ef;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-@media (max-width: 900px) {
-  .profile-container {
-    flex-direction: column;
-  }
-}
-
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app__body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.app__body{
-  display:flex;
-  margin-top: 15px;
   flex-direction: row;
-  justify-content: space-between;
-  margin:20px;
+  justify-content: center;
+  gap: 24px;
+  max-width: 1128px;
+  margin: 24px auto;
+  padding: 0 16px;
+  align-items: flex-start;
 }
 
-
-
-
-
-
-
+@media (max-width: 960px) {
+  .app__body {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,50 +1,67 @@
-import React,{useEffect} from "react";
-
+import { useEffect, useState } from "react";
 import "./premium.css";
 import CloseIcon from "@mui/icons-material/Close";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { fetchProfile } from "./api";
 
 function Premium({ closeModal }) {
- 
+  const [name, setName] = useState("there");
 
+  useEffect(() => {
+    fetchProfile()
+      .then(r => {
+        const n = r.data.user?.first_name || r.data.user?.username || "there";
+        setName(n);
+      })
+      .catch(() => {});
+  }, []);
+
+  const plans = [
+    { name: "Career", price: "₹0", period: "1 month free, then ₹2,499/mo", color: "#c37d16", features: ["See who viewed your profile", "InMail messages", "Top Applicant insights", "Resume & cover letter tips"] },
+    { name: "Business", price: "₹3,299", period: "/month", color: "#057642", features: ["Unlimited people browsing", "Business insights", "Lead recommendations", "CRM integrations"] },
+  ];
 
   return (
-    <div className="modalOverlay" onClick={closeModal}>
-      <div className="modalBox" onClick={(e) => e.stopPropagation()}>
-        
-        {/* Header */}
-        <div className="modalHeader">
-          <h2>Harshada, job search smarter</h2>
-          <CloseIcon className="closeIcon" onClick={closeModal} />
-        </div>
-        
-      
-
-        {/* Content */}
-        <div className="modalContent">
-          <ul>
-            <li>✔ See jobs where you’d be a top applicant</li>
-            <li>✔ Directly message recruiters with InMail</li>
-            <li>✔ Get cover letter and resume tips</li>
-            <li>✔ Join live talks with career experts</li>
-          </ul>
-
-          {/* Users */}
-          <div className="users">
-            <img src="https://i.pravatar.cc/30?img=1" alt="" />
-            <img src="https://i.pravatar.cc/30?img=2" alt="" />
-            <img src="https://i.pravatar.cc/30?img=3" alt="" />
-            <span>Shreyash and millions of members use Premium</span>
+    <div className="premium-overlay" onClick={closeModal}>
+      <div className="premium-box" onClick={e => e.stopPropagation()}>
+        <div className="premium-header">
+          <div>
+            <h2>{name}, job search smarter with Premium</h2>
+            <p>1 month free — cancel anytime</p>
           </div>
-
-          {/* Button */}
-          <button className="premiumBtn">
-            Try 1 month of Premium for ₹0
-          </button>
-
-          <p className="note">
-            1-month free trial. Cancel hassle-free. We'll remind you 7 days before your trial ends.
-          </p>
+          <button className="premium-close" onClick={closeModal}><CloseIcon /></button>
         </div>
+
+        <div className="premium-users">
+          {[1,2,3,4,5].map(i => (
+            <img key={i} src={`https://i.pravatar.cc/32?img=${i}`} alt="" />
+          ))}
+          <span>Millions of members use Premium</span>
+        </div>
+
+        <div className="premium-plans">
+          {plans.map(plan => (
+            <div key={plan.name} className="premium-plan" style={{ borderTop: `4px solid ${plan.color}` }}>
+              <h3 style={{ color: plan.color }}>Premium {plan.name}</h3>
+              <div className="premium-price">
+                <span className="premium-price__amount">{plan.price}</span>
+                <span className="premium-price__period">{plan.period}</span>
+              </div>
+              <ul>
+                {plan.features.map(f => (
+                  <li key={f}><CheckCircleIcon style={{ fontSize: 16, color: plan.color }} />{f}</li>
+                ))}
+              </ul>
+              <button className="premium-btn" style={{ background: plan.color }}>
+                {plan.name === "Career" ? "Try free for 1 month" : `Get ${plan.name}`}
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <p className="premium-note">
+          We'll remind you 7 days before your trial ends. Cancel anytime before then.
+        </p>
       </div>
     </div>
   );

@@ -1,87 +1,171 @@
 .mynetwork {
   display: flex;
-  padding: 20px;
-  background-color: #f3f2ef;
+  max-width: 1128px;
+  margin: 24px auto;
+  padding: 0 16px;
+  gap: 24px;
+  align-items: flex-start;
 }
 
-/* Left Sidebar */
 .mynetwork__left {
-  width: 55%;
-  height: 50%;
+  flex: 0 0 225px;
   background: white;
-  padding: 10px;
-  border-radius: 10px;
-  margin-right: 100px;
-  margin-left: 40px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 16px;
+  position: sticky;
+  top: 68px;
 }
-.sidebarOption{
-  margin-top: 20px;
-  
-}
-
-
 
 .mynetwork__left h3 {
- color:rgb(51, 49, 49);
-
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
+  margin: 0 0 8px;
+  text-align: left;
 }
 
-.mynetwork__left h4 {
-  margin: 10px 0;
+.mynetwork__left hr {
+  border: none;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  margin-bottom: 8px;
+}
+
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 4px;
   cursor: pointer;
-  color: gray;
-  margin-left: 45px;
-  margin-top:-25px;
-  text-decoration: none;
-  font-size: 15px;
-   
+  border-radius: 4px;
+  transition: background 0.15s;
 }
 
-.mynetwork__left h4:hover {
-  color: rgb(72, 70, 70);
-}
-.mynetwork__left a{
-  text-decoration: none;
- 
+.sidebarOption:hover { background: rgba(0,0,0,0.04); }
+
+.sidebarOption svg { color: rgba(0,0,0,0.6); font-size: 20px; }
+
+.sidebarOption h4 {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(0,0,0,0.9);
+  margin: 0;
+  flex: 1;
 }
 
-/* Right Section */
-.mynetwork__right {
-  width: 75%;
-  margin-right:-150px;
-  margin-left: -100px;
+.network__count {
+  font-size: 12px;
+  color: rgba(0,0,0,0.5);
+  font-weight: 600;
+}
+
+.mynetwork__right { flex: 1; }
+
+.network__searchBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+}
+
+.network__searchBar input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  color: rgba(0,0,0,0.9);
+}
+
+.mynetwork__right h5 {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
+  margin: 0 0 16px;
 }
 
 .cardContainer {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
 }
 
 .card {
   background: white;
-  padding: 15px;
-  width: 200px;
-  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  overflow: hidden;
   text-align: center;
+  transition: box-shadow 0.15s;
+  position: relative;
+}
+
+.card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+.card__banner {
+  height: 48px;
+  background: linear-gradient(135deg, #0a66c2, #004182);
 }
 
 .card img {
-  width: 80px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-top: -36px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
+  margin: 8px 12px 2px;
+  text-align: center;
+}
+
+.card p {
+  font-size: 12px;
+  color: rgba(0,0,0,0.6);
+  margin: 0 12px 4px;
+  line-height: 1.3;
+}
+
+.card__mutual {
+  display: block;
+  font-size: 11px;
+  color: rgba(0,0,0,0.4);
+  margin: 0 12px 8px;
 }
 
 .card button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  border: 1px solid #0a66c2;
+  margin: 0 12px 12px;
+  padding: 5px 16px;
+  border: 1.5px solid #0a66c2;
   background: white;
   color: #0a66c2;
-  border-radius: 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.15s;
+  width: calc(100% - 24px);
 }
 
-.card button:hover {
-  background: #0a66c2;
-  color: white;
+.card button:hover { background: #e8f0fb; }
+
+.card__btn--connected {
+  background: #e8f0fb !important;
+  color: #0a66c2 !important;
+}
+
+@media (max-width: 768px) {
+  .mynetwork { flex-direction: column; }
+  .mynetwork__left { flex: none; width: 100%; position: static; }
 }

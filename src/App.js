@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
- import Header from './Header';
+import Header from './Header';
 import Feed from './feed';
 import Sidebar from './sidebar';
 import Widgets from './Widgets';
@@ -10,8 +10,6 @@ import Messaging from "./Messaging";
 import Notification from "./Notification";
 import Profile from "./profile";
 import SavedItems from "./save";
-// import InProgress from "./";
-// import Applied from "./";
 import GroupsSidebar from "./groups";
 import CreateGroup from "./create";
 import Newsletters from "./news";
@@ -19,18 +17,16 @@ import EventsPage from "./Event";
 import CreateNews from "./CreateNews";
 import Jobs from "./jobs";
 import QrCodePage from "./QrCodePage";
-import Main from"./main";
+import Main from "./main";
 import { selectuser } from "./userSlice";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import Login from './login';
-import Premium from'./premium';
-
-
-
+import Premium from './premium';
+import useAuthInit from './useAuthInit';
 
 function App() {
- const user = useSelector(selectuser)
- console.log("USER:", user);
+  useAuthInit();
+  const user = useSelector(selectuser);
   return (
     <BrowserRouter>
      <Header />
@@ -78,6 +74,7 @@ function App() {
         <Route path="/CreateNews"element={<CreateNews />} />
         <Route path ="/main"element={<Main/>}/>
         <Route path ="/premium"element={<Premium/>}/>
+        
       </Routes>
 
       )}

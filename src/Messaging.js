@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Messaging.css";
 import MessageList from "./MessageList";
 import ChatWindow from "./chatwindow";
@@ -8,15 +8,10 @@ function Messaging() {
 
   return (
     <div className="messaging">
-      <MessageList onSelectUser={setSelectedUser} />
+      <MessageList onSelectUser={setSelectedUser} selectedUser={selectedUser} />
       <ChatWindow user={selectedUser} />
-     <div style={{ height: "300px", background: "red" }}>
-       Messaging Visible
-     </div>
     </div>
   );
 }
 
 export default Messaging;
-
- 

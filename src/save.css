@@ -1,118 +1,82 @@
-.savedContainer {
-  flex: 1;
-  padding: 100px;
-}
-
-.savedCard {
-  background: white;
-  padding: 15px;
-  width:50px;
-  height:50px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
- 
-}
-
-.savedCard h3 {
-  margin-bottom: 5px;
-}
-
-
-
 .jobsContainer {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  width: 50%;
-  max-width: 550px;
-  max-height: 550px;
-  margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.08);
-  margin-top: 50px;
+  max-width: 700px;
+  margin: 24px auto;
+  padding: 0 16px;
 }
-
 
 .jobsTitle {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
-  margin-bottom: 15px;
+  color: rgba(0,0,0,0.9);
+  margin: 0 0 16px;
 }
 
-/* Tabs */
 .jobsTabs {
   display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 4px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
 }
 
 .tabButton {
-  padding: 8px 18px;
-  border-radius: 25px;
-  border: 1px solid #ccc;
-  background: #f3f2ef;
+  padding: 6px 16px;
+  border-radius: 24px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.6);
   cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
+  transition: background 0.15s, color 0.15s;
 }
 
-.tabButton:hover {
-  background: #e6e6e6;
-  
-}
+.tabButton:hover { background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.9); }
 
 .activeTab {
-  background-color: #057642;
-
-  color: white;
-  border: none;
-  
-}
- .emptyState img {
-  max-height: 200px;
-  
+  background: #e8f0fb;
+  color: #0a66c2;
 }
 
-/* Empty Section */
 .emptyState {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 48px 24px;
   text-align: center;
-  padding: 40px 0;
 }
 
-/* .emptyImage {
-  width: 250px;
-  margin-bottom: 20px;
-} */
+.emptyState img {
+  width: 180px;
+  margin-bottom: 16px;
+  opacity: 0.7;
+}
 
 .emptyState h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
+  margin: 0 0 8px;
 }
 
 .emptyState p {
-  color: #666;
-  margin-bottom: 20px;
+  font-size: 14px;
+  color: rgba(0,0,0,0.6);
+  margin: 0 0 20px;
 }
 
 .searchBtn {
-  padding: 10px 22px;
-  border-radius: 25px;
-  border: 1px solid #0a66c2;
+  padding: 8px 24px;
+  border-radius: 24px;
+  border: 1.5px solid #0a66c2;
   background: white;
   color: #0a66c2;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.15s;
 }
 
-.searchBtn:hover {
-  background: #e7f3ff;
-  
-}
-@media (max-width: 900px) {
-  .profile-container {
-    flex-direction: column;
-  }
-}
+.searchBtn:hover { background: #e8f0fb; }

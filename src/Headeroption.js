@@ -1,22 +1,16 @@
-import React from 'react';
 import "./Headeroption.css";
-import {Avatar} from "@mui/material";
-import profilepicImg from './profilepic.png';
 
-function Headeroption({ avatar, Icon, title, small }){
-  const hasAvatar = typeof avatar === 'string' && avatar.trim().length > 0;
-  const iconClass = `headeroption__icon ${small ? 'headeroption__icon--small' : ''}`;
+function Headeroption({ avatar, Icon, title, small }) {
   return (
-    <div className="headerOption">
-      {Icon && <Icon className={iconClass} />}
-      {hasAvatar && (
-        <Avatar className={iconClass} src={ avatar||profilepicImg} />
+    <div className="headeroption">
+      {Icon && <Icon style={{ fontSize: small ? 20 : 22 }} />}
+      {avatar && (
+        <div className="headeroption__avatar">
+          <img src={avatar} alt={title} />
+        </div>
       )}
-      <div className="headerOption" onClick={() => console.log("QrcodeIcon clicked")}></div>
-
-      <h3 className="headerOption__title">{title}</h3>
-      </div>
-   
+      <p className="headeroption__title">{title}</p>
+    </div>
   );
 }
 

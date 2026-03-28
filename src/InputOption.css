@@ -13,6 +13,11 @@
   white-space: nowrap;
   min-width: fit-content;
 }
+@media (max-width: 900px) {
+  .profile-container {
+    flex-direction: column;
+  }
+}
 
 .inputOption:hover {
   background-color: #e8e7e1;

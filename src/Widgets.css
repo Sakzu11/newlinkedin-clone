@@ -1,48 +1,57 @@
 .Widgets {
-  flex: 0.35;
-  margin-left: 40px;
-  border-radius: 10px;
-  background-color: #fff;
-  padding: 10px;
+  flex: 0 0 300px;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 12px 0;
   height: fit-content;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 68px;
 }
 
 .Widgets__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 10px;
-  border-bottom: 1px solid lightgray;
+  padding: 4px 12px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
-@media (max-width: 900px) {
-  .profile-container {
-    flex-direction: column;
-  }
+
+.Widgets__header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
+  margin: 0;
 }
 
 .Widgets__article {
   display: flex;
-  padding: 10px 0;
+  align-items: flex-start;
+  padding: 8px 12px;
   cursor: pointer;
+  gap: 8px;
+  transition: background 0.15s;
 }
 
-.Widgets__article:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
-}
+.Widgets__article:hover { background: rgba(0,0,0,0.04); }
 
 .Widgets__articleLeft {
-  margin-right: 10px;
-  color: #0177b7;
+  color: rgba(0,0,0,0.6);
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 
-.Widgets__articleRight > h4 {
-  font-size: 14px;
-  margin-bottom: 2px;
+.Widgets__articleLeft svg { font-size: 8px !important; }
+
+.Widgets__articleRight h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
+  margin: 0 0 2px;
 }
 
-.Widgets__articleRight > p {
-  color: gray;
+.Widgets__articleRight p {
   font-size: 12px;
+  color: rgba(0,0,0,0.6);
+  margin: 0;
 }

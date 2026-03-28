@@ -1,135 +1,191 @@
 .events-page {
   display: flex;
-  width: 85%;
-  margin: 20px auto;
-  gap: 20px;
-  font-family: Arial, sans-serif;
-}
-@media (max-width: 900px) {
-  .profile-container {
-    flex-direction: column;
-  }
+  max-width: 1128px;
+  margin: 24px auto;
+  padding: 0 16px;
+  gap: 24px;
+  align-items: flex-start;
 }
 
-/* LEFT SECTION */
 .events-left {
-  flex: 2;
+  flex: 1;
   background: white;
-  padding: 20px;
-  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 16px;
 }
 
 .events-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3790e9;
-  height:60px;
-  width:100%;
+  margin-bottom: 4px;
+}
+
+.events-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
+  margin: 0;
 }
 
 .create-event-btn {
   background: white;
-  border: 1px solid #0a66c2;
+  border: 1.5px solid #0a66c2;
   color: #0a66c2;
-  padding: 6px 15px;
-  border-radius: 20px;
+  padding: 6px 16px;
+  border-radius: 24px;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
+  transition: background 0.15s;
+}
+
+.create-event-btn:hover {
+  background: #e8f0fb;
 }
 
 .event-count {
-  margin: 15px 0;
-  font-size: 14px;
-  color: gray;
+  font-size: 13px;
+  color: rgba(0,0,0,0.6);
+  margin: 12px 0;
 }
 
 .event-card {
   display: flex;
   align-items: center;
-  padding: 15px 0;
-  border-top: 1px solid #eee;
+  padding: 12px 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  gap: 12px;
 }
 
 .date-badge {
-  width: 60px;
+  min-width: 52px;
   text-align: center;
-  background: #f3f6f8;
-  border-radius: 8px;
-  padding: 6px;
+  background: #f3f2ef;
+  border-radius: 6px;
+  padding: 6px 8px;
 }
 
 .month {
   display: block;
-  font-size: 12px;
-  font-weight: bold;
-  color: #0a66c2;
+  font-size: 11px;
+  font-weight: 700;
+  color: #c0392b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .day {
-  font-size: 20px;
-  font-weight: bold;
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.9);
+  line-height: 1.1;
 }
 
-.event-details {
-  flex: 1;
-  margin-left: 15px;
-}
+.event-details { flex: 1; }
 
 .event-details h3 {
-  margin: 0;
-  font-size: 16px;
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0,0,0,0.9);
 }
 
-.event-type,
-.event-time {
-  font-size: 14px;
-  color: gray;
-  margin: 3px 0;
+.event-type, .event-time {
+  font-size: 12px;
+  color: rgba(0,0,0,0.6);
+  margin: 2px 0;
 }
 
 .event-menu {
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
+  color: rgba(0,0,0,0.6);
+  padding: 4px 8px;
+  border-radius: 50%;
 }
 
-/* RIGHT SECTION */
+.event-menu:hover { background: rgba(0,0,0,0.06); }
+
+/* Create form */
+.events-left form input,
+.events-left form textarea {
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.events-left form input:focus,
+.events-left form textarea:focus {
+  border-color: #0a66c2;
+  outline: none;
+}
+
+/* Right */
 .events-right {
-  flex: 1;
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .discover-card {
   background: white;
-  padding: 15px;
-  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 16px;
   text-align: center;
+}
+
+.discover-card h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px;
 }
 
 .discover-card img {
   width: 100%;
-  border-radius: 8px;
-  margin: 10px 0;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+.discover-card p {
+  font-size: 13px;
+  color: rgba(0,0,0,0.6);
+  margin: 0 0 12px;
 }
 
 .explore-btn {
-  padding: 6px 18px;
-  border-radius: 20px;
-  border: 1px solid #0a66c2;
+  padding: 6px 20px;
+  border-radius: 24px;
+  border: 1.5px solid #0a66c2;
   background: white;
   color: #0a66c2;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
 }
+
+.explore-btn:hover { background: #e8f0fb; }
 
 .events-footer {
-  margin-top: 20px;
-  font-size: 12px;
-  color: gray;
+  font-size: 11px;
+  color: rgba(0,0,0,0.5);
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
+  padding: 8px 0;
 }
 
-.events-footer span {
-  cursor: pointer;
+.events-footer span { cursor: pointer; }
+.events-footer span:hover { text-decoration: underline; color: #0a66c2; }
+
+.copyright { font-size: 11px; color: rgba(0,0,0,0.4); }
+
+@media (max-width: 768px) {
+  .events-page { flex-direction: column; }
+  .events-right { flex: none; width: 100%; }
 }

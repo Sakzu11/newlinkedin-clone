@@ -1,44 +1,23 @@
-/* Main Feed Container */
 .feed {
-  flex: 0.6;
-  margin: 0 0 0 40px;
-  padding: 0 16px;
-  max-width:1000px;
-  height: 100vh;          /* Full screen height */
-  overflow-y: auto;
-  direction:ltr; /* Only feed scrolls */
- }
-
- @media (max-width: 900px) {
-  .profile-container {
-    flex-direction: column;
-  }
+  flex: 1;
+  max-width: 560px;
+  min-width: 0;
+  padding: 0;
 }
 
-/* Input Container */
 .feed__inputContainer {
   background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  padding: 12px 16px 16px 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
 }
 
-/* Input Field */
 .feed__input {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   cursor: pointer;
-  border-radius: 24px;
-  background-color: #f3f2ef;
-  padding: 8px 16px;
-  transition: background-color 0.2s ease;
-}
-
-.feed__input:hover {
-  background-color: #e8e7e1;
 }
 
 .feed__avatar {
@@ -49,143 +28,100 @@
 
 .feed__inputField {
   flex: 1;
-  border: none;
-  background: transparent;
+  border: 1.5px solid rgba(0,0,0,0.3);
+  border-radius: 24px;
+  padding: 10px 16px;
   font-size: 14px;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0,0,0,0.6);
   outline: none;
-  width: 100%;
+  cursor: pointer;
+  background: white;
+  transition: border-color 0.2s;
 }
 
-.feed__inputField::placeholder {
-  color: rgba(0, 0, 0, 0.4);
-  font-weight: 400;
+.feed__inputField:hover {
+  border-color: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.02);
 }
 
-/* Input Options */
 .feed__inputOptions {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 70px;
-  padding: 12px 0 0 0;
-  margin-top: 12px;
+  justify-content: space-around;
+  padding-top: 4px;
+  margin-top: 4px;
+  border-top: 1px solid rgba(0,0,0,0.08);
 }
 
-/* Posts Feed */
 .feed__posts {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
 }
 
 .feed__empty {
   background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
   padding: 40px 20px;
   text-align: center;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0,0,0,0.6);
   font-size: 14px;
 }
 
-/* Modal Overlay */
+/* Modal */
 .modalOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  animation: fadeIn 0.2s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Modal */
 .modal {
   background: white;
-  border-radius: 12px;
+  border-radius: 8px;
   width: 100%;
-  max-width: 500px;
+  max-width: 552px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  animation: slideUp 0.3s ease-out;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Modal Header */
 .modal__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.modal__avatar {
-  width: 32px !important;
-  height: 32px !important;
-  flex-shrink: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .modal__header h2 {
-  margin: 0;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0,0,0,0.9);
 }
 
 .modal__closeBtn {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 22px;
   cursor: pointer;
-  color: rgba(0, 0, 0, 0.6);
-  padding: 0;
+  color: rgba(0,0,0,0.6);
   width: 32px;
   height: 32px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
+  transition: background 0.15s;
 }
 
 .modal__closeBtn:hover {
-  background-color: #f2f2f2;
-  color: rgba(0, 0, 0, 0.9);
+  background: rgba(0,0,0,0.08);
 }
 
-/* Modal Divider */
-.modal__divider {
-  height: 1px;
-  background: #e5e5e5;
-}
-
-/* Modal Body */
 .modal__body {
   padding: 16px 24px;
 }
@@ -193,25 +129,20 @@
 .modal__user {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.modal__user > div {
-  flex: 1;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .modal__user h4 {
-  margin: 0;
   font-size: 14px;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.9);
+  margin: 0;
 }
 
 .modal__user p {
-  margin: 4px 0 0 0;
   font-size: 12px;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0,0,0,0.6);
+  margin: 2px 0 0;
 }
 
 .modal__textarea {
@@ -221,167 +152,104 @@
   resize: none;
   font-size: 16px;
   font-family: inherit;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0,0,0,0.9);
   min-height: 120px;
-  padding: 0;
   line-height: 1.5;
 }
 
 .modal__textarea::placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0,0,0,0.4);
 }
 
-/* Image Preview */
 .modal__imagePreview {
   position: relative;
   margin-top: 12px;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .modal__imagePreview img {
   width: 100%;
-  height: auto;
-  display: block;
   max-height: 300px;
   object-fit: cover;
-}
-
-/* Video Preview */
-.modal__videoPreview {
-  position: relative;
-  margin-top: 12px;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
 .modal__removeImage {
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0,0,0,0.6);
   color: white;
   border: none;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease;
 }
 
-.modal__removeImage:hover {
-  background: rgba(0, 0, 0, 0.9);
-}
-
-/* Modal Footer */
 .modal__footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  border-top: 1px solid #e5e5e5;
+  padding: 8px 24px 12px;
+  border-top: 1px solid rgba(0,0,0,0.08);
   gap: 8px;
 }
 
 .modal__imageBtnSmall {
   background: none;
   border: none;
-  color: #0a66c2;
-  font-size: 14px;
+  color: rgba(0,0,0,0.6);
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 20px;
-  transition: background-color 0.2s ease;
+  transition: background 0.15s;
 }
 
 .modal__imageBtnSmall:hover {
-  background-color: #e8f0f8;
+  background: rgba(0,0,0,0.06);
 }
 
 .modal__postBtn {
-  background-color: #0a66c2;
+  background: #0a66c2;
   color: white;
   border: none;
   padding: 8px 24px;
-  border-radius: 20px;
+  border-radius: 24px;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
   margin-left: auto;
+  transition: background 0.2s;
 }
 
 .modal__postBtn:hover:not(:disabled) {
-  background-color: #0854a0;
-  box-shadow: 0 4px 8px rgba(10, 102, 194, 0.2);
+  background: #004182;
 }
 
 .modal__postBtn:disabled {
-  background-color: #c0c0c0;
+  background: rgba(0,0,0,0.2);
   cursor: not-allowed;
-  opacity: 0.6;
 }
 
-/* Post Styles */
-.post {
-  background: white;
-  border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.2s ease;
+.modal__docPreview {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #fff8f3;
+  border: 1px solid rgba(224,108,0,0.3);
+  border-radius: 6px;
+  font-size: 13px;
+  color: rgba(0,0,0,0.9);
+  position: relative;
 }
 
-.post:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .feed {
-    padding: 0 12px;
-  }
-
-  .modal {
-    max-width: calc(100% - 32px);
-  }
-
-  .feed__input {
-    padding: 8px 12px;
-  }
-
-  .modal__header,
-  .modal__body,
-  .modal__footer {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.modal__docPreview svg { color: #e06c00; flex-shrink: 0; }
+.modal__docPreview span { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

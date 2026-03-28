@@ -1,51 +1,44 @@
-/* Header option: icon and title styles */
-.headeroption{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
-	color: gray;
-	margin-right: -40px;
-	
+.headeroption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  height: 52px;
+  cursor: pointer;
+  color: rgba(0,0,0,0.6);
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  min-width: 56px;
+  text-decoration: none;
 }
 
-.headeroption__icon{
-	color: gray !important;
-	font-size: 28px;
-	width: 36px;
-	height: 36px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	overflow: hidden;
-}
-.headeroption__icon:hover{
-	color:black;
-
+.headeroption:hover {
+  color: rgba(0,0,0,0.9);
+  border-bottom-color: rgba(0,0,0,0.9);
 }
 
-/* smaller avatar/icon variant (used for 'Me' in header) */
-.headeroption__icon--small{
-    font-size: 20px;
-    width: 28px;
-    height: 28px;
+.headeroption svg {
+  font-size: 22px !important;
+  color: inherit;
 }
 
-.headeroption__icon img{
-	width: 50px;
-	height: 50px;
-	object-fit: cover;
+.headeroption__avatar {
+  width: 24px;
+  height: 24px;
 }
 
-.headeroption__title{
-	font-size: 12px;
-	color: gray;
-	margin-top: 6px;
-	padding-left: 24px;
+.headeroption__avatar img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
 }
-.headeroption__avatar>img{
-	width:60px;
-	height:70px;
+
+.headeroption__title {
+  font-size: 11px;
+  font-weight: 400;
+  margin: 2px 0 0;
+  color: inherit;
+  white-space: nowrap;
 }
