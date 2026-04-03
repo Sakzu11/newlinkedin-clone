@@ -60,4 +60,11 @@ urlpatterns = [
     # Profile Links
     path('links/', views.ProfileLinkListCreateView.as_view(), name='profilelink-list'),
     path('links/<int:pk>/', views.ProfileLinkDetailView.as_view(), name='profilelink-detail'),
+
+    # Connections
+    path('connections/', views.ConnectionRequestListCreateView.as_view(), name='connection-list'),
+    path('connections/<int:pk>/', views.ConnectionRequestDetailView.as_view(), name='connection-detail'),
+    path('connections/status/<int:user_id>/', views.connection_status, name='connection-status'),
+    path('connections/count/', views.connection_count, name='connection-count'),
+    path('connections/list/', views.connections_list, name='connections-list'),
 ]

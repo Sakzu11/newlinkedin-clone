@@ -2,14 +2,17 @@ from rest_framework import generics, permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.parsers import MultiPartParser, FormParser
 from django.contrib.auth.models import User
-from .models import Profile, Post, Comment, Job, Event, Group, Newsletter, Experience, Skill, Project, Certificate, ProfileLink
+from django.db import models as db_models
+from .models import Profile, Post, Comment, Job, Event, Group, Newsletter, Experience, Skill, Project, Certificate, ProfileLink, ConnectionRequest
 from .serializers import (
     RegisterSerializer, ProfileSerializer, PostSerializer,
     CommentSerializer, JobSerializer, EventSerializer,
     GroupSerializer, NewsletterSerializer, UserSerializer,
     ExperienceSerializer, SkillSerializer, ProjectSerializer,
-    CertificateSerializer, ProfileLinkSerializer
+    CertificateSerializer, ProfileLinkSerializer,
+    ConnectionRequestSerializer, ConnectionStatusSerializer
 )
 
 
@@ -42,9 +45,32 @@ class ProfileDetailView(generics.RetrieveUpdateAPIView):
 
 
 # Posts (Feed)
+# class PostListCreateView(generics.ListCreateAPIView):
+#     serializer_class = PostSerializer
+#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+#     def get_queryset(self):
+#         return Post.objects.filter(is_archived=False)
+
+#     def perform_create(self, serializer):
+#         serializer.save(author=self.request.user)
+
+#     def get_serializer_context(self):
+#         return {'request': self.request}
+
+#     def create(self, request, *args, **kwargs):
+#         serializer = self.get_serializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         self.perform_create(serializer)
+#         # Re-fetch the post to get correct media URLs
+#         from .models import Post as PostModel
+#         post = PostModel.objects.get(pk=serializer.instance.pk)
+#         out = self.get_serializer(post)
 class PostListCreateView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    parser_classes = [MultiPartParser, FormParser]   # 🔥 ADD THIS LINE
 
     def get_queryset(self):
         return Post.objects.filter(is_archived=False)
@@ -54,6 +80,19 @@ class PostListCreateView(generics.ListCreateAPIView):
 
     def get_serializer_context(self):
         return {'request': self.request}
+
+    def create(self, request, *args, **kwargs):
+        print(request.FILES)  # 👈 DEBUG (optional)
+
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        from .models import Post as PostModel
+        post = PostModel.objects.get(pk=serializer.instance.pk)
+        out = self.get_serializer(post)
+
+        return Response(out.data, status=status.HTTP_201_CREATED)
 
 
 class PostDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -378,3 +417,130 @@ class ProfileLinkDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return ProfileLink.objects.filter(user=self.request.user)
+
+
+# Connections
+class ConnectionRequestListCreateView(generics.ListCreateAPIView):
+    serializer_class = ConnectionRequestSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return ConnectionRequest.objects.filter(
+            db_models.Q(requester=user) | db_models.Q(recipient=user)
+        )
+
+    def create(self, request, *args, **kwargs):
+        recipient_id = request.data.get('recipient_id')
+        if not recipient_id:
+            return Response({'error': 'recipient_id is required.'}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            recipient = User.objects.get(pk=recipient_id)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        if recipient == request.user:
+            return Response({'error': 'You cannot connect with yourself.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Check both directions
+        exists = ConnectionRequest.objects.filter(
+            db_models.Q(requester=request.user, recipient=recipient) |
+            db_models.Q(requester=recipient, recipient=request.user)
+        ).exists()
+        if exists:
+            return Response({'error': 'A connection request already exists between these users.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        conn = ConnectionRequest.objects.create(requester=request.user, recipient=recipient)
+        serializer = self.get_serializer(conn)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class ConnectionRequestDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ConnectionRequestSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return ConnectionRequest.objects.filter(
+            db_models.Q(requester=user) | db_models.Q(recipient=user)
+        )
+
+    def partial_update(self, request, *args, **kwargs):
+        conn = self.get_object()
+        new_status = request.data.get('status')
+        if conn.recipient != request.user:
+            return Response({'error': 'You are not the recipient of this request.'}, status=status.HTTP_403_FORBIDDEN)
+        if new_status not in ['accepted', 'declined']:
+            return Response({'error': 'Invalid status.'}, status=status.HTTP_400_BAD_REQUEST)
+        conn.status = new_status
+        conn.save()
+        return Response(self.get_serializer(conn).data)
+
+    def destroy(self, request, *args, **kwargs):
+        conn = self.get_object()
+        if conn.status == 'pending':
+            if conn.requester != request.user:
+                return Response({'error': 'You are not the requester of this request.'}, status=status.HTTP_403_FORBIDDEN)
+        else:
+            if conn.requester != request.user and conn.recipient != request.user:
+                return Response({'error': 'You are not part of this connection.'}, status=status.HTTP_403_FORBIDDEN)
+        conn.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def connection_status(request, user_id):
+    try:
+        other = User.objects.get(pk=user_id)
+    except User.DoesNotExist:
+        return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    conn = ConnectionRequest.objects.filter(
+        db_models.Q(requester=request.user, recipient=other) |
+        db_models.Q(requester=other, recipient=request.user)
+    ).first()
+
+    if not conn:
+        return Response({'status': 'none', 'connection_id': None})
+    if conn.status == 'accepted':
+        return Response({'status': 'connected', 'connection_id': conn.id})
+    if conn.status == 'pending':
+        if conn.requester == request.user:
+            return Response({'status': 'pending_sent', 'connection_id': conn.id})
+        else:
+            return Response({'status': 'pending_received', 'connection_id': conn.id})
+    return Response({'status': 'none', 'connection_id': None})
+
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def connection_count(request):
+    count = ConnectionRequest.objects.filter(
+        db_models.Q(requester=request.user) | db_models.Q(recipient=request.user),
+        status='accepted'
+    ).count()
+    return Response({'count': count})
+
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def connections_list(request):
+    accepted = ConnectionRequest.objects.filter(
+        db_models.Q(requester=request.user) | db_models.Q(recipient=request.user),
+        status='accepted'
+    )
+    users = []
+    for conn in accepted:
+        other = conn.recipient if conn.requester == request.user else conn.requester
+        avatar_url = None
+        if hasattr(other, 'profile') and other.profile.avatar:
+            avatar_url = other.profile.avatar.url
+        users.append({
+            'id': other.id,
+            'username': other.username,
+            'first_name': other.first_name,
+            'last_name': other.last_name,
+            'avatar': avatar_url,
+        })
+    return Response(users)

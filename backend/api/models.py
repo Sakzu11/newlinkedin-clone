@@ -15,7 +15,7 @@ class Profile(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    content = models.TextField()
+    content = models.TextField(blank=True, default='')
     image = models.ImageField(upload_to='posts/', blank=True, null=True)
     video = models.FileField(upload_to='posts/videos/', blank=True, null=True)
     document = models.FileField(upload_to='posts/documents/', blank=True, null=True)
@@ -148,3 +148,22 @@ class ProfileLink(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='links')
     label = models.CharField(max_length=100)
     url = models.URLField()
+
+
+class ConnectionRequest(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+        ('declined', 'Declined'),
+    ]
+    requester = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_requests')
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_requests')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('requester', 'recipient')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.requester} -> {self.recipient} ({self.status})"

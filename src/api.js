@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000/api';
+const BASE_URL = '/api';
+export const MEDIA_URL = 'http://localhost:8000';
 
 const api = axios.create({ baseURL: BASE_URL });
 
@@ -11,7 +12,10 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Auth
+// Media URLs are proxied via /media — no prefix needed
+api.interceptors.response.use((response) => {
+  return response;
+});
 export const loginUser = (email, password) =>
   api.post('/token/', { username: email, password });
 
@@ -21,9 +25,14 @@ export const registerUser = (data) =>
 // Posts
 export const fetchPosts = () => api.get('/posts/');
 export const fetchUserPosts = () => api.get('/posts/user/');
-export const createPost = (data) => api.post('/posts/', data, {
-  headers: { 'Content-Type': 'multipart/form-data' }
-});
+export const createPost = (data) => {
+  const token = localStorage.getItem('access_token');
+  return axios.post('http://localhost:8000/api/posts/', data, {
+    headers: {
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
+    }
+  });
+};
 export const likePost = (id) => api.post(`/posts/${id}/like/`);
 export const addComment = (id, content) => api.post(`/posts/${id}/comments/`, { content });
 export const deletePost = (id) => api.delete(`/posts/${id}/delete/`);
@@ -31,9 +40,7 @@ export const archivePost = (id) => api.post(`/posts/${id}/archive/`);
 
 // Profile
 export const fetchProfile = () => api.get('/profile/');
-export const updateProfile = (data) => api.patch('/profile/', data, {
-  headers: { 'Content-Type': 'multipart/form-data' }
-});
+export const updateProfile = (data) => api.patch('/profile/', data);
 
 // Profile sections
 export const fetchExperiences = () => api.get('/experiences/');

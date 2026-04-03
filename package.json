@@ -27,6 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "concurrently \"cd backend && venv/Scripts/python manage.py runserver\" \"react-scripts start\"",
     "license": "MIT",
     "build": "react-scripts build",
     "test": "react-scripts test",

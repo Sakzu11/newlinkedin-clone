@@ -10,17 +10,20 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+ 
   background: #f3f2ef;
-  gap: 80px;
+  gap: 0;
   padding: 40px 20px;
 }
 
 .login__container {
   background: white;
   padding: 40px 48px;
-  border-radius: 8px;
-  width: 400px;
+  border-radius: 8px 0 0 8px;
+  width: 600px;
+  height: 600px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .logo {
@@ -30,8 +33,8 @@
 }
 
 .logo img.login__logo {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .login__container > p:first-of-type {
@@ -181,8 +184,10 @@ form input::placeholder {
 
 .pic img {
   width: 480px;
-  height: auto;
-  object-fit: contain;
+  height: 600px;
+  object-fit: cover;
+  margin-right: 0;
+  border-radius: 0 8px 8px 0;
 }
 
 @media (max-width: 900px) {

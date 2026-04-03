@@ -10,6 +10,9 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import { likePost, addComment, deletePost, archivePost } from "./api";
 
+const BACKEND = 'http://localhost:3000';
+const mediaUrl = (url) => url && url.startsWith('/media/') ? `${BACKEND}${url}` : url;
+
 function Post({ id, onDelete, onArchive, name, description, message, photoUrl, image, video, document: doc, timestamp, likes_count = 0, liked_by_me = false, comments: initialComments = [], is_archived = false }) {
   const [liked, setLiked] = useState(liked_by_me);
   const [likes, setLikes] = useState(likes_count);
@@ -118,15 +121,15 @@ function Post({ id, onDelete, onArchive, name, description, message, photoUrl, i
       <div className="post__body">
         {message && <p>{message}</p>}
         {image && (
-          <img src={image} alt="post" style={{ width: '100%', maxHeight: '500px', objectFit: 'cover', marginTop: '8px', borderRadius: '2px' }}
+          <img src={mediaUrl(image)} alt="post" style={{ width: '100%', maxHeight: '500px', objectFit: 'cover', marginTop: '8px', borderRadius: '2px' }}
             onError={(e) => { e.target.style.display = 'none'; }} />
         )}
         {video && (
-          <video src={video} controls style={{ width: '100%', maxHeight: '500px', marginTop: '8px', borderRadius: '2px', background: '#000' }}
+          <video src={mediaUrl(video)} controls style={{ width: '100%', maxHeight: '500px', marginTop: '8px', borderRadius: '2px', background: '#000' }}
             onError={(e) => { e.target.style.display = 'none'; }} />
         )}
         {doc && (
-          <a href={doc} target="_blank" rel="noreferrer" className="post__docAttachment">
+          <a href={mediaUrl(doc)} target="_blank" rel="noreferrer" className="post__docAttachment">
             <AttachFileIcon style={{ fontSize: 18 }} />
             <span>{doc.split('/').pop()}</span>
             <span className="post__docBadge">PDF / DOC</span>

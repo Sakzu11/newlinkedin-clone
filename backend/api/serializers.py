@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Profile, Post, Comment, Job, Event, Group, Newsletter, Experience, Skill, Project, Certificate, ProfileLink
+from .models import Profile, Post, Comment, Job, Event, Group, Newsletter, Experience, Skill, Project, Certificate, ProfileLink, ConnectionRequest
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -32,15 +32,13 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'headline', 'avatar', 'cover_image', 'bio']
 
     def get_avatar(self, obj):
-        request = self.context.get('request')
-        if obj.avatar and request:
-            return request.build_absolute_uri(obj.avatar.url)
+        if obj.avatar:
+            return obj.avatar.url
         return None
 
     def get_cover_image(self, obj):
-        request = self.context.get('request')
-        if obj.cover_image and request:
-            return request.build_absolute_uri(obj.cover_image.url)
+        if obj.cover_image:
+            return obj.cover_image.url
         return None
 
 
@@ -57,13 +55,22 @@ class PostSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
     likes_count = serializers.SerializerMethodField()
     liked_by_me = serializers.SerializerMethodField()
-    image = serializers.SerializerMethodField()
-    video = serializers.SerializerMethodField()
-    document = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
+    video_url = serializers.SerializerMethodField()
+    document_url = serializers.SerializerMethodField()
+    content = serializers.CharField(required=False, allow_blank=True, default='')
 
     class Meta:
         model = Post
-        fields = ['id', 'author', 'content', 'image', 'video', 'document', 'is_archived', 'created_at', 'likes_count', 'liked_by_me', 'comments']
+        fields = ['id', 'author', 'content', 'image', 'video', 'document', 'image_url', 'video_url', 'document_url', 'is_archived', 'created_at', 'likes_count', 'liked_by_me', 'comments']
+        extra_kwargs = {
+            'image': {'write_only': True, 'required': False},
+            'video': {'write_only': True, 'required': False},
+            'document': {'write_only': True, 'required': False},
+        }
+
+    def validate_content(self, value):
+        return value.strip() if value else ''
 
     def get_likes_count(self, obj):
         return obj.likes.count()
@@ -74,22 +81,19 @@ class PostSerializer(serializers.ModelSerializer):
             return obj.likes.filter(id=request.user.id).exists()
         return False
 
-    def get_image(self, obj):
-        request = self.context.get('request')
-        if obj.image and request:
-            return request.build_absolute_uri(obj.image.url)
+    def get_image_url(self, obj):
+        if obj.image:
+            return obj.image.url
         return None
 
-    def get_video(self, obj):
-        request = self.context.get('request')
-        if obj.video and request:
-            return request.build_absolute_uri(obj.video.url)
+    def get_video_url(self, obj):
+        if obj.video:
+            return obj.video.url
         return None
 
-    def get_document(self, obj):
-        request = self.context.get('request')
-        if obj.document and request:
-            return request.build_absolute_uri(obj.document.url)
+    def get_document_url(self, obj):
+        if obj.document:
+            return obj.document.url
         return None
 
 
@@ -157,3 +161,19 @@ class ProfileLinkSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfileLink
         fields = ['id', 'label', 'url']
+
+
+class ConnectionRequestSerializer(serializers.ModelSerializer):
+    requester = UserSerializer(read_only=True)
+    recipient = UserSerializer(read_only=True)
+    recipient_id = serializers.IntegerField(write_only=True)
+
+    class Meta:
+        model = ConnectionRequest
+        fields = ['id', 'requester', 'recipient', 'recipient_id', 'status', 'created_at']
+        read_only_fields = ['status', 'created_at']
+
+
+class ConnectionStatusSerializer(serializers.Serializer):
+    status = serializers.CharField()
+    connection_id = serializers.IntegerField(allow_null=True)

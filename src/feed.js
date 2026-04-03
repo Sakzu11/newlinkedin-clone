@@ -59,19 +59,26 @@ function Feed() {
   const handleCreatePost = async () => {
     if (!postText.trim() && !imageFile && !videoFile && !docFile) return;
     const formData = new FormData();
-    formData.append('content', postText.trim() || ' ');
+    formData.append('content', postText.trim() || '');
     if (imageFile) formData.append('image', imageFile);
     if (videoFile) formData.append('video', videoFile);
     if (docFile) formData.append('document', docFile);
+    console.log('imageFile:', imageFile);
+    for (let [k, v] of formData.entries()) console.log('FormData:', k, v);
     setPostError("");
     try {
       const res = await createPost(formData);
+      console.log('Post response:', JSON.stringify(res.data));
       setPosts([res.data, ...posts]);
       setPostText(""); setImage(null); setImageFile(null);
       setVideo(null); setVideoFile(null); setDocFile(null);
       setIsModalOpen(false);
     } catch (err) {
-      setPostError(err?.response?.status === 401 ? "You must be logged in to post." : "Failed to post. Try again.");
+      const status = err?.response?.status;
+      const detail = err?.response?.data ? JSON.stringify(err.response.data) : err.message;
+      if (status === 401) setPostError("You must be logged in to post.");
+      else if (status === 413) setPostError("File too large. Please use a smaller file.");
+      else setPostError(`Failed to post (${status || 'network error'}): ${detail}`);
     }
   };
 
@@ -151,9 +158,9 @@ function Feed() {
               description={post.author?.username}
               message={post.content}
               photoUrl=""
-              image={post.image}
-              video={post.video}
-              document={post.document}
+              image={post.image_url}
+              video={post.video_url}
+              document={post.document_url}
               timestamp={post.created_at}
               likes_count={post.likes_count}
               liked_by_me={post.liked_by_me}

@@ -291,8 +291,9 @@ export default function ProfilePage() {
                   name={`${post.author?.first_name || ''} ${post.author?.last_name || post.author?.username}`.trim()}
                   description={post.author?.username}
                   message={post.content}
-                  image={post.image}
-                  video={post.video}
+                  image={post.image_url}
+                  video={post.video_url}
+                  document={post.document_url}
                   timestamp={post.created_at}
                   likes_count={post.likes_count}
                   liked_by_me={post.liked_by_me}
